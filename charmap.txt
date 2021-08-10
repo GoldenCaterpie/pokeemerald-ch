@@ -320,9 +320,9 @@ TALL_PLUS   = FC 0C FB
 
 @ Japanese punctuation
 '　' = 00
-'！' = AB
-'？' = AC
-'。' = AD
+@'！' = AB
+@'？' = AC
+@'。' = AD
 'ー' = AE
 '⋯' = B0
 
@@ -7842,3 +7842,13 @@ EMOJI_BIGANGER = F9 FE
 '鼽' = 1E5B
 '鼾' = 1E5C
 '齄' = 1E5D
+
+@ Chinese punctuation
+'；' = 36
+'。' = 37
+'—' = 38
+'~' = 39
+'、' = 3A
+'，' = 3B
+'！' = 3C
+'？' = 3D
