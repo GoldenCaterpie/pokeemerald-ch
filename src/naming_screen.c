@@ -27,6 +27,7 @@
 #include "overworld.h"
 #include "constants/event_objects.h"
 #include "constants/rgb.h"
+#include "ch_input.h"
 
 enum {
     INPUT_NONE,

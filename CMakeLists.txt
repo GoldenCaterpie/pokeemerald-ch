@@ -882,4 +882,4 @@ add_executable(pokeemerald_ch
         tools/scaninc/scaninc.cpp
         tools/scaninc/scaninc.h
         tools/scaninc/source_file.cpp
-        tools/scaninc/source_file.h)
+        tools/scaninc/source_file.h include/ch_input.h)
