@@ -1,7 +1,3 @@
-//
-// Created by 17259 on 2022/3/15.
-//
-
 #ifndef POKEEMERALD_CH_CH_INPUT_H
 #define POKEEMERALD_CH_CH_INPUT_H
 
@@ -200,8 +196,7 @@ static const u8 pinyin_m[] = _("呒");
 static const u8 pinyin_ma[] = _("貉妈麻玛码蚂马骂嘛吗么靡摩抹呐蓦唛犸嬷杩蟆貊麽");
 static const u8 pinyin_mai[] = _("哩埋买麦卖迈脉派劢荬咪霾");
 static const u8 pinyin_man[] = _("埋瞒馒蛮满蔓曼慢漫谩幕墁幔缦熳镘颟螨蹒鳗鞔");
-static const u8 pinyin_mang[] = _("龙芒茫盲氓忙莽邙瞢漭朦硭蟒");
-static const u8 pinyin_mangmi[] = _("(null)");
+static const u8 pinyin_mang[] = _("龙芒茫盲氓忙莽邙瞢漭朦硭蟒 ");
 static const u8 pinyin_mao[] = _("耗猫茅锚毛矛铆卯茂冒帽貌贸描牟侔袤勖茆峁泖瑁昴牦耄旄懋瞀蛑蝥蟊髦");
 static const u8 pinyin_me[] = _("么麽");
 static const u8 pinyin_mei[] = _("玫枚梅酶霉煤没眉媒镁每美昧寐妹媚糜谜墨沫某味坶莓嵋猸浼湄楣镅鹛袂魅");
@@ -211,7 +206,6 @@ static const u8 pinyin_mi[] = _("辟尔眯醚靡糜迷谜弥米秘觅泌蜜密�
 static const u8 pinyin_mian[] = _("棉眠绵冕免勉娩缅面冥沔泯渑湎宀缗腼眄瞑黾");
 static const u8 pinyin_miao[] = _("吵猫苗描瞄藐秒渺庙妙纱喵邈缈缪杪淼眇鹋蜱");
 static const u8 pinyin_mie[] = _("蔑灭乜谂咩咪蠛篾");
-static const u8 pinyin_miliklanm[] = _("(null)");
 static const u8 pinyin_min[] = _("眠民抿皿敏悯闽绳苠岷闵汶泯缗玟珉愍黾鳘");
 static const u8 pinyin_ming[] = _("萌盟明螟鸣铭名命冥茗溟暝瞑酩");
 static const u8 pinyin_miu[] = _("谬缪");
@@ -429,48 +423,5158 @@ static const u8 pinyin_zuo[] = _("醋撮挫凿乍琢昨左佐柞做作坐座阼�
 struct ChTreeNode
 {
     const u8 letter;                                //拼音字母
+    const u8 childCount;                            //子节点数
     const u8 *const chinese;                        //与该拼音完全对应的文字
     const struct ChTreeNode *const *const child;    //记录所有子节点
 };
 
-//节点
+//根节点
 const struct ChTreeNode gNode_root;
-static const struct ChTreeNode node_a;
-static const struct ChTreeNode node_ai;
-static const struct ChTreeNode node_an;
-static const struct ChTreeNode node_ang;
-static const struct ChTreeNode node_ao;
 
-//子节点数组
-static const struct ChTreeNode *child_root[];
+//节点
+static const struct ChTreeNode node_ai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_ai,
+                .child = NULL,
+                .childCount = 0,
+        };
 
-const struct ChTreeNode gNode_root =
-{
-    .letter = 0,
-    .chinese = NULL,
-    .child = child_root,
-};
-static const struct ChTreeNode *child_root[] =
-{
-    &node_a,
-};
+static const struct ChTreeNode node_ang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_ang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_an[] =
+        {
+                &node_ang,
+        };
+
+static const struct ChTreeNode node_an =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_an,
+                .child = child_an,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_ao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_ao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_a[] =
+        {
+                &node_ai, &node_an, &node_ao,
+        };
 
 static const struct ChTreeNode node_a =
-{
-    .letter = CHAR_a,
-    .chinese = pinyin_a,
-    .child = NULL,
-};
-static const struct ChTreeNode *child_a[] =
-{
-    &node_ai, &node_an, &node_ao,
-};
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_a,
+                .child = child_a,
+                .childCount = 3,
+        };
 
-static const struct ChTreeNode node_ai =
-{
-    .letter = CHAR_i,
-    .chinese = pinyin_ai,
-    .child = NULL,
-};
+static const struct ChTreeNode node_bai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_bai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_bang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_bang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ban[] =
+        {
+                &node_bang,
+        };
+
+static const struct ChTreeNode node_ban =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_ban,
+                .child = child_ban,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_bao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_bao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ba[] =
+        {
+                &node_bai, &node_ban, &node_bao,
+        };
+
+static const struct ChTreeNode node_ba =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_ba,
+                .child = child_ba,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_bei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_bei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_beng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_beng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ben[] =
+        {
+                &node_beng,
+        };
+
+static const struct ChTreeNode node_ben =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_ben,
+                .child = child_ben,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_be[] =
+        {
+                &node_bei, &node_ben,
+        };
+
+static const struct ChTreeNode node_be =
+        {
+                .letter = CHAR_e,
+                .chinese = NULL,
+                .child = child_be,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_bian =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_bian,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_biao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_biao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_bia[] =
+        {
+                &node_bian, &node_biao,
+        };
+
+static const struct ChTreeNode node_bia =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_bia,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_bie =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_bie,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_bing =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_bing,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_bin[] =
+        {
+                &node_bing,
+        };
+
+static const struct ChTreeNode node_bin =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_bin,
+                .child = child_bin,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_bi[] =
+        {
+                &node_bia, &node_bie, &node_bin,
+        };
+
+static const struct ChTreeNode node_bi =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_bi,
+                .child = child_bi,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_bo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_bo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_bu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_bu,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_b[] =
+        {
+                &node_ba, &node_be, &node_bi, &node_bo, &node_bu,
+        };
+
+static const struct ChTreeNode node_b =
+        {
+                .letter = CHAR_b,
+                .chinese = NULL,
+                .child = child_b,
+                .childCount = 5,
+        };
+
+static const struct ChTreeNode node_cai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_cai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_cang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_cang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_can[] =
+        {
+                &node_cang,
+        };
+
+static const struct ChTreeNode node_can =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_can,
+                .child = child_can,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_cao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_cao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ca[] =
+        {
+                &node_cai, &node_can, &node_cao,
+        };
+
+static const struct ChTreeNode node_ca =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_ca,
+                .child = child_ca,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_ceng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_ceng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_cen[] =
+        {
+                &node_ceng,
+        };
+
+static const struct ChTreeNode node_cen =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_cen,
+                .child = child_cen,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_ce[] =
+        {
+                &node_cen,
+        };
+
+static const struct ChTreeNode node_ce =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_ce,
+                .child = child_ce,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_chai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_chai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_chang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_chang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_chan[] =
+        {
+                &node_chang,
+        };
+
+static const struct ChTreeNode node_chan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_chan,
+                .child = child_chan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_chao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_chao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_cha[] =
+        {
+                &node_chai, &node_chan, &node_chao,
+        };
+
+static const struct ChTreeNode node_cha =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_cha,
+                .child = child_cha,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_cheng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_cheng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_chen[] =
+        {
+                &node_cheng,
+        };
+
+static const struct ChTreeNode node_chen =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_chen,
+                .child = child_chen,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_che[] =
+        {
+                &node_chen,
+        };
+
+static const struct ChTreeNode node_che =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_che,
+                .child = child_che,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_chi =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_chi,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_chong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_chong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_chon[] =
+        {
+                &node_chong,
+        };
+
+static const struct ChTreeNode node_chon =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_chon,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_chou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_chou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_cho[] =
+        {
+                &node_chon, &node_chou,
+        };
+
+static const struct ChTreeNode node_cho =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_cho,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_chuai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_chuai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_chuang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_chuang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_chuan[] =
+        {
+                &node_chuang,
+        };
+
+static const struct ChTreeNode node_chuan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_chuan,
+                .child = child_chuan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_chua[] =
+        {
+                &node_chuai, &node_chuan,
+        };
+
+static const struct ChTreeNode node_chua =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_chua,
+                .child = child_chua,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_chui =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_chui,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_chun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_chun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_chuo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_chuo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_chu[] =
+        {
+                &node_chua, &node_chui, &node_chun, &node_chuo,
+        };
+
+static const struct ChTreeNode node_chu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_chu,
+                .child = child_chu,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode *const child_ch[] =
+        {
+                &node_cha, &node_che, &node_chi, &node_cho, &node_chu,
+        };
+
+static const struct ChTreeNode node_ch =
+        {
+                .letter = CHAR_h,
+                .chinese = NULL,
+                .child = child_ch,
+                .childCount = 5,
+        };
+
+static const struct ChTreeNode node_ci =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_ci,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_cong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_cong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_con[] =
+        {
+                &node_cong,
+        };
+
+static const struct ChTreeNode node_con =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_con,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_cou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_cou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_co[] =
+        {
+                &node_con, &node_cou,
+        };
+
+static const struct ChTreeNode node_co =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_co,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_cuan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_cuan,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_cua[] =
+        {
+                &node_cuan,
+        };
+
+static const struct ChTreeNode node_cua =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_cua,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_cui =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_cui,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_cun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_cun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_cuo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_cuo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_cu[] =
+        {
+                &node_cua, &node_cui, &node_cun, &node_cuo,
+        };
+
+static const struct ChTreeNode node_cu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_cu,
+                .child = child_cu,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode *const child_c[] =
+        {
+                &node_ca, &node_ce, &node_ch, &node_ci, &node_co, &node_cu,
+        };
+
+static const struct ChTreeNode node_c =
+        {
+                .letter = CHAR_c,
+                .chinese = NULL,
+                .child = child_c,
+                .childCount = 6,
+        };
+
+static const struct ChTreeNode node_dai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_dai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_dang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_dang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_dan[] =
+        {
+                &node_dang,
+        };
+
+static const struct ChTreeNode node_dan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_dan,
+                .child = child_dan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_dao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_dao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_da[] =
+        {
+                &node_dai, &node_dan, &node_dao,
+        };
+
+static const struct ChTreeNode node_da =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_da,
+                .child = child_da,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_dei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_dei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_deng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_deng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_den[] =
+        {
+                &node_deng,
+        };
+
+static const struct ChTreeNode node_den =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_den,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_de[] =
+        {
+                &node_dei, &node_den,
+        };
+
+static const struct ChTreeNode node_de =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_de,
+                .child = child_de,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_dian =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_dian,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_diao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_diao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_dia[] =
+        {
+                &node_dian, &node_diao,
+        };
+
+static const struct ChTreeNode node_dia =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_dia,
+                .child = child_dia,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_die =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_die,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_ding =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_ding,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_din[] =
+        {
+                &node_ding,
+        };
+
+static const struct ChTreeNode node_din =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_din,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_diu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_diu,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_di[] =
+        {
+                &node_dia, &node_die, &node_din, &node_diu,
+        };
+
+static const struct ChTreeNode node_di =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_di,
+                .child = child_di,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode node_dong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_dong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_don[] =
+        {
+                &node_dong,
+        };
+
+static const struct ChTreeNode node_don =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_don,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_dou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_dou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_do[] =
+        {
+                &node_don, &node_dou,
+        };
+
+static const struct ChTreeNode node_do =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_do,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_duan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_duan,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_dua[] =
+        {
+                &node_duan,
+        };
+
+static const struct ChTreeNode node_dua =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_dua,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_dui =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_dui,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_dun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_dun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_duo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_duo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_du[] =
+        {
+                &node_dua, &node_dui, &node_dun, &node_duo,
+        };
+
+static const struct ChTreeNode node_du =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_du,
+                .child = child_du,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode *const child_d[] =
+        {
+                &node_da, &node_de, &node_di, &node_do, &node_du,
+        };
+
+static const struct ChTreeNode node_d =
+        {
+                .letter = CHAR_d,
+                .chinese = NULL,
+                .child = child_d,
+                .childCount = 5,
+        };
+
+static const struct ChTreeNode node_ei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_ei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_en =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_en,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_er =
+        {
+                .letter = CHAR_r,
+                .chinese = pinyin_er,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_e[] =
+        {
+                &node_ei, &node_en, &node_er,
+        };
+
+static const struct ChTreeNode node_e =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_e,
+                .child = child_e,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_fang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_fang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_fan[] =
+        {
+                &node_fang,
+        };
+
+static const struct ChTreeNode node_fan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_fan,
+                .child = child_fan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_fa[] =
+        {
+                &node_fan,
+        };
+
+static const struct ChTreeNode node_fa =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_fa,
+                .child = child_fa,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_fei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_fei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_feng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_feng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_fen[] =
+        {
+                &node_feng,
+        };
+
+static const struct ChTreeNode node_fen =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_fen,
+                .child = child_fen,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_fe[] =
+        {
+                &node_fei, &node_fen,
+        };
+
+static const struct ChTreeNode node_fe =
+        {
+                .letter = CHAR_e,
+                .chinese = NULL,
+                .child = child_fe,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_fou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_fou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_fo[] =
+        {
+                &node_fou,
+        };
+
+static const struct ChTreeNode node_fo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_fo,
+                .child = child_fo,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_fu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_fu,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_f[] =
+        {
+                &node_fa, &node_fe, &node_fo, &node_fu,
+        };
+
+static const struct ChTreeNode node_f =
+        {
+                .letter = CHAR_f,
+                .chinese = NULL,
+                .child = child_f,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode node_gai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_gai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_gang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_gang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_gan[] =
+        {
+                &node_gang,
+        };
+
+static const struct ChTreeNode node_gan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_gan,
+                .child = child_gan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_gao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_gao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ga[] =
+        {
+                &node_gai, &node_gan, &node_gao,
+        };
+
+static const struct ChTreeNode node_ga =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_ga,
+                .child = child_ga,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_gei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_gei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_geng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_geng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_gen[] =
+        {
+                &node_geng,
+        };
+
+static const struct ChTreeNode node_gen =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_gen,
+                .child = child_gen,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_ge[] =
+        {
+                &node_gei, &node_gen,
+        };
+
+static const struct ChTreeNode node_ge =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_ge,
+                .child = child_ge,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_gong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_gong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_gon[] =
+        {
+                &node_gong,
+        };
+
+static const struct ChTreeNode node_gon =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_gon,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_gou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_gou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_go[] =
+        {
+                &node_gon, &node_gou,
+        };
+
+static const struct ChTreeNode node_go =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_go,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_guai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_guai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_guang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_guang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_guan[] =
+        {
+                &node_guang,
+        };
+
+static const struct ChTreeNode node_guan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_guan,
+                .child = child_guan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_gua[] =
+        {
+                &node_guai, &node_guan,
+        };
+
+static const struct ChTreeNode node_gua =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_gua,
+                .child = child_gua,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_gui =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_gui,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_gun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_gun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_guo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_guo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_gu[] =
+        {
+                &node_gua, &node_gui, &node_gun, &node_guo,
+        };
+
+static const struct ChTreeNode node_gu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_gu,
+                .child = child_gu,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode *const child_g[] =
+        {
+                &node_ga, &node_ge, &node_go, &node_gu,
+        };
+
+static const struct ChTreeNode node_g =
+        {
+                .letter = CHAR_g,
+                .chinese = NULL,
+                .child = child_g,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode node_hai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_hai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_hang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_hang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_han[] =
+        {
+                &node_hang,
+        };
+
+static const struct ChTreeNode node_han =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_han,
+                .child = child_han,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_hao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_hao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ha[] =
+        {
+                &node_hai, &node_han, &node_hao,
+        };
+
+static const struct ChTreeNode node_ha =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_ha,
+                .child = child_ha,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_hei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_hei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_heng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_heng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_hen[] =
+        {
+                &node_heng,
+        };
+
+static const struct ChTreeNode node_hen =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_hen,
+                .child = child_hen,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_he[] =
+        {
+                &node_hei, &node_hen,
+        };
+
+static const struct ChTreeNode node_he =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_he,
+                .child = child_he,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_hong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_hong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_hon[] =
+        {
+                &node_hong,
+        };
+
+static const struct ChTreeNode node_hon =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_hon,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_hou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_hou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ho[] =
+        {
+                &node_hon, &node_hou,
+        };
+
+static const struct ChTreeNode node_ho =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_ho,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_huai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_huai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_huang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_huang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_huan[] =
+        {
+                &node_huang,
+        };
+
+static const struct ChTreeNode node_huan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_huan,
+                .child = child_huan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_hua[] =
+        {
+                &node_huai, &node_huan,
+        };
+
+static const struct ChTreeNode node_hua =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_hua,
+                .child = child_hua,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_hui =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_hui,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_hun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_hun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_huo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_huo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_hu[] =
+        {
+                &node_hua, &node_hui, &node_hun, &node_huo,
+        };
+
+static const struct ChTreeNode node_hu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_hu,
+                .child = child_hu,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode *const child_h[] =
+        {
+                &node_ha, &node_he, &node_ho, &node_hu,
+        };
+
+static const struct ChTreeNode node_h =
+        {
+                .letter = CHAR_h,
+                .chinese = NULL,
+                .child = child_h,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode node_jiang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_jiang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_jian[] =
+        {
+                &node_jiang,
+        };
+
+static const struct ChTreeNode node_jian =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_jian,
+                .child = child_jian,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_jiao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_jiao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_jia[] =
+        {
+                &node_jian, &node_jiao,
+        };
+
+static const struct ChTreeNode node_jia =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_jia,
+                .child = child_jia,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_jie =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_jie,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_jing =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_jing,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_jin[] =
+        {
+                &node_jing,
+        };
+
+static const struct ChTreeNode node_jin =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_jin,
+                .child = child_jin,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_jiong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_jiong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_jion[] =
+        {
+                &node_jiong,
+        };
+
+static const struct ChTreeNode node_jion =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_jion,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_jio[] =
+        {
+                &node_jion,
+        };
+
+static const struct ChTreeNode node_jio =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_jio,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_jiu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_jiu,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ji[] =
+        {
+                &node_jia, &node_jie, &node_jin, &node_jio, &node_jiu,
+        };
+
+static const struct ChTreeNode node_ji =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_ji,
+                .child = child_ji,
+                .childCount = 5,
+        };
+
+static const struct ChTreeNode node_juan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_juan,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_jua[] =
+        {
+                &node_juan,
+        };
+
+static const struct ChTreeNode node_jua =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_jua,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_jue =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_jue,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_jun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_jun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ju[] =
+        {
+                &node_jua, &node_jue, &node_jun,
+        };
+
+static const struct ChTreeNode node_ju =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_ju,
+                .child = child_ju,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode *const child_j[] =
+        {
+                &node_ji, &node_ju,
+        };
+
+static const struct ChTreeNode node_j =
+        {
+                .letter = CHAR_j,
+                .chinese = NULL,
+                .child = child_j,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_kai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_kai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_kang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_kang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_kan[] =
+        {
+                &node_kang,
+        };
+
+static const struct ChTreeNode node_kan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_kan,
+                .child = child_kan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_kao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_kao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ka[] =
+        {
+                &node_kai, &node_kan, &node_kao,
+        };
+
+static const struct ChTreeNode node_ka =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_ka,
+                .child = child_ka,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_kei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_kei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_keng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_keng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ken[] =
+        {
+                &node_keng,
+        };
+
+static const struct ChTreeNode node_ken =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_ken,
+                .child = child_ken,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_ke[] =
+        {
+                &node_kei, &node_ken,
+        };
+
+static const struct ChTreeNode node_ke =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_ke,
+                .child = child_ke,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_kong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_kong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_kon[] =
+        {
+                &node_kong,
+        };
+
+static const struct ChTreeNode node_kon =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_kon,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_kou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_kou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ko[] =
+        {
+                &node_kon, &node_kou,
+        };
+
+static const struct ChTreeNode node_ko =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_ko,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_kuai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_kuai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_kuang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_kuang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_kuan[] =
+        {
+                &node_kuang,
+        };
+
+static const struct ChTreeNode node_kuan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_kuan,
+                .child = child_kuan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_kua[] =
+        {
+                &node_kuai, &node_kuan,
+        };
+
+static const struct ChTreeNode node_kua =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_kua,
+                .child = child_kua,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_kui =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_kui,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_kun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_kun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_kuo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_kuo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ku[] =
+        {
+                &node_kua, &node_kui, &node_kun, &node_kuo,
+        };
+
+static const struct ChTreeNode node_ku =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_ku,
+                .child = child_ku,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode *const child_k[] =
+        {
+                &node_ka, &node_ke, &node_ko, &node_ku,
+        };
+
+static const struct ChTreeNode node_k =
+        {
+                .letter = CHAR_k,
+                .chinese = NULL,
+                .child = child_k,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode node_lai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_lai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_lang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_lang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_lan[] =
+        {
+                &node_lang,
+        };
+
+static const struct ChTreeNode node_lan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_lan,
+                .child = child_lan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_lao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_lao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_la[] =
+        {
+                &node_lai, &node_lan, &node_lao,
+        };
+
+static const struct ChTreeNode node_la =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_la,
+                .child = child_la,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_lei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_lei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_leng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_leng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_len[] =
+        {
+                &node_leng,
+        };
+
+static const struct ChTreeNode node_len =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_len,
+                .child = child_len,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_le[] =
+        {
+                &node_lei, &node_len,
+        };
+
+static const struct ChTreeNode node_le =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_le,
+                .child = child_le,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_liang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_liang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_lian[] =
+        {
+                &node_liang,
+        };
+
+static const struct ChTreeNode node_lian =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_lian,
+                .child = child_lian,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_liao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_liao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_lia[] =
+        {
+                &node_lian, &node_liao,
+        };
+
+static const struct ChTreeNode node_lia =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_lia,
+                .child = child_lia,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_lie =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_lie,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_ling =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_ling,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_lin[] =
+        {
+                &node_ling,
+        };
+
+static const struct ChTreeNode node_lin =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_lin,
+                .child = child_lin,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_liu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_liu,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_li[] =
+        {
+                &node_lia, &node_lie, &node_lin, &node_liu,
+        };
+
+static const struct ChTreeNode node_li =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_li,
+                .child = child_li,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode node_long =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_long,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_lon[] =
+        {
+                &node_long,
+        };
+
+static const struct ChTreeNode node_lon =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_lon,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_lou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_lou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_lo[] =
+        {
+                &node_lon, &node_lou,
+        };
+
+static const struct ChTreeNode node_lo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_lo,
+                .child = child_lo,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_luan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_luan,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_lua[] =
+        {
+                &node_luan,
+        };
+
+static const struct ChTreeNode node_lua =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_lua,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_lue =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_lue,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_lun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_lun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_luo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_luo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_lu[] =
+        {
+                &node_lua, &node_lue, &node_lun, &node_luo,
+        };
+
+static const struct ChTreeNode node_lu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_lu,
+                .child = child_lu,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode node_lve =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_lve,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_lv[] =
+        {
+                &node_lve,
+        };
+
+static const struct ChTreeNode node_lv =
+        {
+                .letter = CHAR_v,
+                .chinese = pinyin_lv,
+                .child = child_lv,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_l[] =
+        {
+                &node_la, &node_le, &node_li, &node_lo, &node_lu, &node_lv,
+        };
+
+static const struct ChTreeNode node_l =
+        {
+                .letter = CHAR_l,
+                .chinese = NULL,
+                .child = child_l,
+                .childCount = 6,
+        };
+
+static const struct ChTreeNode node_mai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_mai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_mang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_mang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_man[] =
+        {
+                &node_mang,
+        };
+
+static const struct ChTreeNode node_man =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_man,
+                .child = child_man,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_mao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_mao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ma[] =
+        {
+                &node_mai, &node_man, &node_mao,
+        };
+
+static const struct ChTreeNode node_ma =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_ma,
+                .child = child_ma,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_mei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_mei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_meng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_meng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_men[] =
+        {
+                &node_meng,
+        };
+
+static const struct ChTreeNode node_men =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_men,
+                .child = child_men,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_me[] =
+        {
+                &node_mei, &node_men,
+        };
+
+static const struct ChTreeNode node_me =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_me,
+                .child = child_me,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_mian =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_mian,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_miao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_miao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_mia[] =
+        {
+                &node_mian, &node_miao,
+        };
+
+static const struct ChTreeNode node_mia =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_mia,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_mie =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_mie,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_ming =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_ming,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_min[] =
+        {
+                &node_ming,
+        };
+
+static const struct ChTreeNode node_min =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_min,
+                .child = child_min,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_miu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_miu,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_mi[] =
+        {
+                &node_mia, &node_mie, &node_min, &node_miu,
+        };
+
+static const struct ChTreeNode node_mi =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_mi,
+                .child = child_mi,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode node_mou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_mou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_mo[] =
+        {
+                &node_mou,
+        };
+
+static const struct ChTreeNode node_mo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_mo,
+                .child = child_mo,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_mu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_mu,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_m[] =
+        {
+                &node_ma, &node_me, &node_mi, &node_mo, &node_mu,
+        };
+
+static const struct ChTreeNode node_m =
+        {
+                .letter = CHAR_m,
+                .chinese = pinyin_m,
+                .child = child_m,
+                .childCount = 5,
+        };
+
+static const struct ChTreeNode node_nai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_nai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_nang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_nang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_nan[] =
+        {
+                &node_nang,
+        };
+
+static const struct ChTreeNode node_nan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_nan,
+                .child = child_nan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_nao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_nao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_na[] =
+        {
+                &node_nai, &node_nan, &node_nao,
+        };
+
+static const struct ChTreeNode node_na =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_na,
+                .child = child_na,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_nei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_nei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_neng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_neng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_nen[] =
+        {
+                &node_neng,
+        };
+
+static const struct ChTreeNode node_nen =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_nen,
+                .child = child_nen,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_ne[] =
+        {
+                &node_nei, &node_nen,
+        };
+
+static const struct ChTreeNode node_ne =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_ne,
+                .child = child_ne,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_ng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_ng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_niang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_niang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_nian[] =
+        {
+                &node_niang,
+        };
+
+static const struct ChTreeNode node_nian =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_nian,
+                .child = child_nian,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_niao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_niao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_nia[] =
+        {
+                &node_nian, &node_niao,
+        };
+
+static const struct ChTreeNode node_nia =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_nia,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_nie =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_nie,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_ning =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_ning,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_nin[] =
+        {
+                &node_ning,
+        };
+
+static const struct ChTreeNode node_nin =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_nin,
+                .child = child_nin,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_niu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_niu,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ni[] =
+        {
+                &node_nia, &node_nie, &node_nin, &node_niu,
+        };
+
+static const struct ChTreeNode node_ni =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_ni,
+                .child = child_ni,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode node_nong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_nong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_non[] =
+        {
+                &node_nong,
+        };
+
+static const struct ChTreeNode node_non =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_non,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_nou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_nou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_no[] =
+        {
+                &node_non, &node_nou,
+        };
+
+static const struct ChTreeNode node_no =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_no,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_nuan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_nuan,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_nua[] =
+        {
+                &node_nuan,
+        };
+
+static const struct ChTreeNode node_nua =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_nua,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_nue =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_nue,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_nuo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_nuo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_nu[] =
+        {
+                &node_nua, &node_nue, &node_nuo,
+        };
+
+static const struct ChTreeNode node_nu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_nu,
+                .child = child_nu,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_nve =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_nve,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_nv[] =
+        {
+                &node_nve,
+        };
+
+static const struct ChTreeNode node_nv =
+        {
+                .letter = CHAR_v,
+                .chinese = pinyin_nv,
+                .child = child_nv,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_n[] =
+        {
+                &node_na, &node_ne, &node_ng, &node_ni, &node_no, &node_nu, &node_nv,
+        };
+
+static const struct ChTreeNode node_n =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_n,
+                .child = child_n,
+                .childCount = 7,
+        };
+
+static const struct ChTreeNode node_ou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_ou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_o[] =
+        {
+                &node_ou,
+        };
+
+static const struct ChTreeNode node_o =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_o,
+                .child = child_o,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_pai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_pai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_pang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_pang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_pan[] =
+        {
+                &node_pang,
+        };
+
+static const struct ChTreeNode node_pan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_pan,
+                .child = child_pan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_pao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_pao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_pa[] =
+        {
+                &node_pai, &node_pan, &node_pao,
+        };
+
+static const struct ChTreeNode node_pa =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_pa,
+                .child = child_pa,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_pei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_pei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_peng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_peng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_pen[] =
+        {
+                &node_peng,
+        };
+
+static const struct ChTreeNode node_pen =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_pen,
+                .child = child_pen,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_pe[] =
+        {
+                &node_pei, &node_pen,
+        };
+
+static const struct ChTreeNode node_pe =
+        {
+                .letter = CHAR_e,
+                .chinese = NULL,
+                .child = child_pe,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_pianpang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_pianpang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_pianpan[] =
+        {
+                &node_pianpang,
+        };
+
+static const struct ChTreeNode node_pianpan =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_pianpan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_pianpa[] =
+        {
+                &node_pianpan,
+        };
+
+static const struct ChTreeNode node_pianpa =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_pianpa,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_pianp[] =
+        {
+                &node_pianpa,
+        };
+
+static const struct ChTreeNode node_pianp =
+        {
+                .letter = CHAR_p,
+                .chinese = NULL,
+                .child = child_pianp,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_pian[] =
+        {
+                &node_pianp,
+        };
+
+static const struct ChTreeNode node_pian =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_pian,
+                .child = child_pian,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_piao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_piao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_pia[] =
+        {
+                &node_pian, &node_piao,
+        };
+
+static const struct ChTreeNode node_pia =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_pia,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_pie =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_pie,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_ping =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_ping,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_pin[] =
+        {
+                &node_ping,
+        };
+
+static const struct ChTreeNode node_pin =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_pin,
+                .child = child_pin,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_pi[] =
+        {
+                &node_pia, &node_pie, &node_pin,
+        };
+
+static const struct ChTreeNode node_pi =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_pi,
+                .child = child_pi,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_pou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_pou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_po[] =
+        {
+                &node_pou,
+        };
+
+static const struct ChTreeNode node_po =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_po,
+                .child = child_po,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_pu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_pu,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_p[] =
+        {
+                &node_pa, &node_pe, &node_pi, &node_po, &node_pu,
+        };
+
+static const struct ChTreeNode node_p =
+        {
+                .letter = CHAR_p,
+                .chinese = NULL,
+                .child = child_p,
+                .childCount = 5,
+        };
+
+static const struct ChTreeNode node_qiang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_qiang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_qian[] =
+        {
+                &node_qiang,
+        };
+
+static const struct ChTreeNode node_qian =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_qian,
+                .child = child_qian,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_qiao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_qiao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_qia[] =
+        {
+                &node_qian, &node_qiao,
+        };
+
+static const struct ChTreeNode node_qia =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_qia,
+                .child = child_qia,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_qie =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_qie,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_qing =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_qing,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_qin[] =
+        {
+                &node_qing,
+        };
+
+static const struct ChTreeNode node_qin =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_qin,
+                .child = child_qin,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_qiong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_qiong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_qion[] =
+        {
+                &node_qiong,
+        };
+
+static const struct ChTreeNode node_qion =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_qion,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_qio[] =
+        {
+                &node_qion,
+        };
+
+static const struct ChTreeNode node_qio =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_qio,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_qiu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_qiu,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_qi[] =
+        {
+                &node_qia, &node_qie, &node_qin, &node_qio, &node_qiu,
+        };
+
+static const struct ChTreeNode node_qi =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_qi,
+                .child = child_qi,
+                .childCount = 5,
+        };
+
+static const struct ChTreeNode node_quan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_quan,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_qua[] =
+        {
+                &node_quan,
+        };
+
+static const struct ChTreeNode node_qua =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_qua,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_que =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_que,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_qun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_qun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_qu[] =
+        {
+                &node_qua, &node_que, &node_qun,
+        };
+
+static const struct ChTreeNode node_qu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_qu,
+                .child = child_qu,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode *const child_q[] =
+        {
+                &node_qi, &node_qu,
+        };
+
+static const struct ChTreeNode node_q =
+        {
+                .letter = CHAR_q,
+                .chinese = NULL,
+                .child = child_q,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_rang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_rang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ran[] =
+        {
+                &node_rang,
+        };
+
+static const struct ChTreeNode node_ran =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_ran,
+                .child = child_ran,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_rao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_rao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ra[] =
+        {
+                &node_ran, &node_rao,
+        };
+
+static const struct ChTreeNode node_ra =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_ra,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_reng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_reng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ren[] =
+        {
+                &node_reng,
+        };
+
+static const struct ChTreeNode node_ren =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_ren,
+                .child = child_ren,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_re[] =
+        {
+                &node_ren,
+        };
+
+static const struct ChTreeNode node_re =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_re,
+                .child = child_re,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_ri =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_ri,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_rong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_rong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ron[] =
+        {
+                &node_rong,
+        };
+
+static const struct ChTreeNode node_ron =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_ron,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_rou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_rou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ro[] =
+        {
+                &node_ron, &node_rou,
+        };
+
+static const struct ChTreeNode node_ro =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_ro,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_ruan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_ruan,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_rua[] =
+        {
+                &node_ruan,
+        };
+
+static const struct ChTreeNode node_rua =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_rua,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_rui =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_rui,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_run =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_run,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_ruo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_ruo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ru[] =
+        {
+                &node_rua, &node_rui, &node_run, &node_ruo,
+        };
+
+static const struct ChTreeNode node_ru =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_ru,
+                .child = child_ru,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode *const child_r[] =
+        {
+                &node_ra, &node_re, &node_ri, &node_ro, &node_ru,
+        };
+
+static const struct ChTreeNode node_r =
+        {
+                .letter = CHAR_r,
+                .chinese = NULL,
+                .child = child_r,
+                .childCount = 5,
+        };
+
+static const struct ChTreeNode node_sai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_sai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_sang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_sang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_san[] =
+        {
+                &node_sang,
+        };
+
+static const struct ChTreeNode node_san =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_san,
+                .child = child_san,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_sao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_sao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_sa[] =
+        {
+                &node_sai, &node_san, &node_sao,
+        };
+
+static const struct ChTreeNode node_sa =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_sa,
+                .child = child_sa,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_seng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_seng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_sen[] =
+        {
+                &node_seng,
+        };
+
+static const struct ChTreeNode node_sen =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_sen,
+                .child = child_sen,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_se[] =
+        {
+                &node_sen,
+        };
+
+static const struct ChTreeNode node_se =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_se,
+                .child = child_se,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_shai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_shai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_shang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_shang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_shan[] =
+        {
+                &node_shang,
+        };
+
+static const struct ChTreeNode node_shan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_shan,
+                .child = child_shan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_shao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_shao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_sha[] =
+        {
+                &node_shai, &node_shan, &node_shao,
+        };
+
+static const struct ChTreeNode node_sha =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_sha,
+                .child = child_sha,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_shei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_shei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_sheng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_sheng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_shen[] =
+        {
+                &node_sheng,
+        };
+
+static const struct ChTreeNode node_shen =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_shen,
+                .child = child_shen,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_she[] =
+        {
+                &node_shei, &node_shen,
+        };
+
+static const struct ChTreeNode node_she =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_she,
+                .child = child_she,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_shi =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_shi,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_shou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_shou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_sho[] =
+        {
+                &node_shou,
+        };
+
+static const struct ChTreeNode node_sho =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_sho,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_shuai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_shuai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_shuang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_shuang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_shuan[] =
+        {
+                &node_shuang,
+        };
+
+static const struct ChTreeNode node_shuan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_shuan,
+                .child = child_shuan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_shua[] =
+        {
+                &node_shuai, &node_shuan,
+        };
+
+static const struct ChTreeNode node_shua =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_shua,
+                .child = child_shua,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_shui =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_shui,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_shun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_shun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_shuo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_shuo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_shu[] =
+        {
+                &node_shua, &node_shui, &node_shun, &node_shuo,
+        };
+
+static const struct ChTreeNode node_shu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_shu,
+                .child = child_shu,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode node_shw =
+        {
+                .letter = CHAR_w,
+                .chinese = pinyin_shw,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_sh[] =
+        {
+                &node_sha, &node_she, &node_shi, &node_sho, &node_shu, &node_shw,
+        };
+
+static const struct ChTreeNode node_sh =
+        {
+                .letter = CHAR_h,
+                .chinese = NULL,
+                .child = child_sh,
+                .childCount = 6,
+        };
+
+static const struct ChTreeNode node_si =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_si,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_song =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_song,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_son[] =
+        {
+                &node_song,
+        };
+
+static const struct ChTreeNode node_son =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_son,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_sou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_sou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_so[] =
+        {
+                &node_son, &node_sou,
+        };
+
+static const struct ChTreeNode node_so =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_so,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_suan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_suan,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_sua[] =
+        {
+                &node_suan,
+        };
+
+static const struct ChTreeNode node_sua =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_sua,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_sui =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_sui,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_sun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_sun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_suo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_suo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_su[] =
+        {
+                &node_sua, &node_sui, &node_sun, &node_suo,
+        };
+
+static const struct ChTreeNode node_su =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_su,
+                .child = child_su,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode *const child_s[] =
+        {
+                &node_sa, &node_se, &node_sh, &node_si, &node_so, &node_su,
+        };
+
+static const struct ChTreeNode node_s =
+        {
+                .letter = CHAR_s,
+                .chinese = NULL,
+                .child = child_s,
+                .childCount = 6,
+        };
+
+static const struct ChTreeNode node_tai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_tai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_tang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_tang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_tan[] =
+        {
+                &node_tang,
+        };
+
+static const struct ChTreeNode node_tan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_tan,
+                .child = child_tan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_tao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_tao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ta[] =
+        {
+                &node_tai, &node_tan, &node_tao,
+        };
+
+static const struct ChTreeNode node_ta =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_ta,
+                .child = child_ta,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_tei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_tei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_teng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_teng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ten[] =
+        {
+                &node_teng,
+        };
+
+static const struct ChTreeNode node_ten =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_ten,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_te[] =
+        {
+                &node_tei, &node_ten,
+        };
+
+static const struct ChTreeNode node_te =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_te,
+                .child = child_te,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_tian =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_tian,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_tiao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_tiao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_tia[] =
+        {
+                &node_tian, &node_tiao,
+        };
+
+static const struct ChTreeNode node_tia =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_tia,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_tie =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_tie,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_ting =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_ting,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_tin[] =
+        {
+                &node_ting,
+        };
+
+static const struct ChTreeNode node_tin =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_tin,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_ti[] =
+        {
+                &node_tia, &node_tie, &node_tin,
+        };
+
+static const struct ChTreeNode node_ti =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_ti,
+                .child = child_ti,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_tong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_tong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ton[] =
+        {
+                &node_tong,
+        };
+
+static const struct ChTreeNode node_ton =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_ton,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_tou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_tou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_to[] =
+        {
+                &node_ton, &node_tou,
+        };
+
+static const struct ChTreeNode node_to =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_to,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_tuan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_tuan,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_tua[] =
+        {
+                &node_tuan,
+        };
+
+static const struct ChTreeNode node_tua =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_tua,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_tui =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_tui,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_tun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_tun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_tuo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_tuo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_tu[] =
+        {
+                &node_tua, &node_tui, &node_tun, &node_tuo,
+        };
+
+static const struct ChTreeNode node_tu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_tu,
+                .child = child_tu,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode *const child_t[] =
+        {
+                &node_ta, &node_te, &node_ti, &node_to, &node_tu,
+        };
+
+static const struct ChTreeNode node_t =
+        {
+                .letter = CHAR_t,
+                .chinese = NULL,
+                .child = child_t,
+                .childCount = 5,
+        };
+
+static const struct ChTreeNode node_wai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_wai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_wang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_wang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_wan[] =
+        {
+                &node_wang,
+        };
+
+static const struct ChTreeNode node_wan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_wan,
+                .child = child_wan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_wa[] =
+        {
+                &node_wai, &node_wan,
+        };
+
+static const struct ChTreeNode node_wa =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_wa,
+                .child = child_wa,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_wei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_wei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_weng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_weng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_wen[] =
+        {
+                &node_weng,
+        };
+
+static const struct ChTreeNode node_wen =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_wen,
+                .child = child_wen,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_we[] =
+        {
+                &node_wei, &node_wen,
+        };
+
+static const struct ChTreeNode node_we =
+        {
+                .letter = CHAR_e,
+                .chinese = NULL,
+                .child = child_we,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_wo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_wo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_wu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_wu,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_w[] =
+        {
+                &node_wa, &node_we, &node_wo, &node_wu,
+        };
+
+static const struct ChTreeNode node_w =
+        {
+                .letter = CHAR_w,
+                .chinese = NULL,
+                .child = child_w,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode node_xiang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_xiang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_xian[] =
+        {
+                &node_xiang,
+        };
+
+static const struct ChTreeNode node_xian =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_xian,
+                .child = child_xian,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_xiao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_xiao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_xia[] =
+        {
+                &node_xian, &node_xiao,
+        };
+
+static const struct ChTreeNode node_xia =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_xia,
+                .child = child_xia,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_xie =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_xie,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_xing =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_xing,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_xin[] =
+        {
+                &node_xing,
+        };
+
+static const struct ChTreeNode node_xin =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_xin,
+                .child = child_xin,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_xiong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_xiong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_xion[] =
+        {
+                &node_xiong,
+        };
+
+static const struct ChTreeNode node_xion =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_xion,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_xio[] =
+        {
+                &node_xion,
+        };
+
+static const struct ChTreeNode node_xio =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_xio,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_xiu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_xiu,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_xi[] =
+        {
+                &node_xia, &node_xie, &node_xin, &node_xio, &node_xiu,
+        };
+
+static const struct ChTreeNode node_xi =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_xi,
+                .child = child_xi,
+                .childCount = 5,
+        };
+
+static const struct ChTreeNode node_xuan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_xuan,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_xua[] =
+        {
+                &node_xuan,
+        };
+
+static const struct ChTreeNode node_xua =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_xua,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_xue =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_xue,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_xun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_xun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_xu[] =
+        {
+                &node_xua, &node_xue, &node_xun,
+        };
+
+static const struct ChTreeNode node_xu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_xu,
+                .child = child_xu,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode *const child_x[] =
+        {
+                &node_xi, &node_xu,
+        };
+
+static const struct ChTreeNode node_x =
+        {
+                .letter = CHAR_x,
+                .chinese = NULL,
+                .child = child_x,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_yang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_yang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_yan[] =
+        {
+                &node_yang,
+        };
+
+static const struct ChTreeNode node_yan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_yan,
+                .child = child_yan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_yao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_yao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_ya[] =
+        {
+                &node_yan, &node_yao,
+        };
+
+static const struct ChTreeNode node_ya =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_ya,
+                .child = child_ya,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_ye =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_ye,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_ying =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_ying,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_yin[] =
+        {
+                &node_ying,
+        };
+
+static const struct ChTreeNode node_yin =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_yin,
+                .child = child_yin,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_yi[] =
+        {
+                &node_yin,
+        };
+
+static const struct ChTreeNode node_yi =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_yi,
+                .child = child_yi,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_yong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_yong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_yon[] =
+        {
+                &node_yong,
+        };
+
+static const struct ChTreeNode node_yon =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_yon,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_you =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_you,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_yo[] =
+        {
+                &node_yon, &node_you,
+        };
+
+static const struct ChTreeNode node_yo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_yo,
+                .child = child_yo,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_yuan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_yuan,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_yua[] =
+        {
+                &node_yuan,
+        };
+
+static const struct ChTreeNode node_yua =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_yua,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_yue =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_yue,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_yun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_yun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_yu[] =
+        {
+                &node_yua, &node_yue, &node_yun,
+        };
+
+static const struct ChTreeNode node_yu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_yu,
+                .child = child_yu,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode *const child_y[] =
+        {
+                &node_ya, &node_ye, &node_yi, &node_yo, &node_yu,
+        };
+
+static const struct ChTreeNode node_y =
+        {
+                .letter = CHAR_y,
+                .chinese = NULL,
+                .child = child_y,
+                .childCount = 5,
+        };
+
+static const struct ChTreeNode node_zai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_zai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_zang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_zang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_zan[] =
+        {
+                &node_zang,
+        };
+
+static const struct ChTreeNode node_zan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_zan,
+                .child = child_zan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_zao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_zao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_za[] =
+        {
+                &node_zai, &node_zan, &node_zao,
+        };
+
+static const struct ChTreeNode node_za =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_za,
+                .child = child_za,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_zei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_zei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_zeng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_zeng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_zen[] =
+        {
+                &node_zeng,
+        };
+
+static const struct ChTreeNode node_zen =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_zen,
+                .child = child_zen,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_ze[] =
+        {
+                &node_zei, &node_zen,
+        };
+
+static const struct ChTreeNode node_ze =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_ze,
+                .child = child_ze,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_zhai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_zhai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_zhang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_zhang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_zhan[] =
+        {
+                &node_zhang,
+        };
+
+static const struct ChTreeNode node_zhan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_zhan,
+                .child = child_zhan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_zhao =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_zhao,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_zha[] =
+        {
+                &node_zhai, &node_zhan, &node_zhao,
+        };
+
+static const struct ChTreeNode node_zha =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_zha,
+                .child = child_zha,
+                .childCount = 3,
+        };
+
+static const struct ChTreeNode node_zhei =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_zhei,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_zheng =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_zheng,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_zhen[] =
+        {
+                &node_zheng,
+        };
+
+static const struct ChTreeNode node_zhen =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_zhen,
+                .child = child_zhen,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_zhe[] =
+        {
+                &node_zhei, &node_zhen,
+        };
+
+static const struct ChTreeNode node_zhe =
+        {
+                .letter = CHAR_e,
+                .chinese = pinyin_zhe,
+                .child = child_zhe,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_zhi =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_zhi,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_zhong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_zhong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_zhon[] =
+        {
+                &node_zhong,
+        };
+
+static const struct ChTreeNode node_zhon =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_zhon,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_zhou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_zhou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_zho[] =
+        {
+                &node_zhon, &node_zhou,
+        };
+
+static const struct ChTreeNode node_zho =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_zho,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_zhuai =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_zhuai,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_zhuang =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_zhuang,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_zhuan[] =
+        {
+                &node_zhuang,
+        };
+
+static const struct ChTreeNode node_zhuan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_zhuan,
+                .child = child_zhuan,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode *const child_zhua[] =
+        {
+                &node_zhuai, &node_zhuan,
+        };
+
+static const struct ChTreeNode node_zhua =
+        {
+                .letter = CHAR_a,
+                .chinese = pinyin_zhua,
+                .child = child_zhua,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_zhui =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_zhui,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_zhun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_zhun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_zhuo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_zhuo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_zhu[] =
+        {
+                &node_zhua, &node_zhui, &node_zhun, &node_zhuo,
+        };
+
+static const struct ChTreeNode node_zhu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_zhu,
+                .child = child_zhu,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode *const child_zh[] =
+        {
+                &node_zha, &node_zhe, &node_zhi, &node_zho, &node_zhu,
+        };
+
+static const struct ChTreeNode node_zh =
+        {
+                .letter = CHAR_h,
+                .chinese = NULL,
+                .child = child_zh,
+                .childCount = 5,
+        };
+
+static const struct ChTreeNode node_zi =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_zi,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_zong =
+        {
+                .letter = CHAR_g,
+                .chinese = pinyin_zong,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_zon[] =
+        {
+                &node_zong,
+        };
+
+static const struct ChTreeNode node_zon =
+        {
+                .letter = CHAR_n,
+                .chinese = NULL,
+                .child = child_zon,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_zou =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_zou,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_zo[] =
+        {
+                &node_zon, &node_zou,
+        };
+
+static const struct ChTreeNode node_zo =
+        {
+                .letter = CHAR_o,
+                .chinese = NULL,
+                .child = child_zo,
+                .childCount = 2,
+        };
+
+static const struct ChTreeNode node_zuan =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_zuan,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_zua[] =
+        {
+                &node_zuan,
+        };
+
+static const struct ChTreeNode node_zua =
+        {
+                .letter = CHAR_a,
+                .chinese = NULL,
+                .child = child_zua,
+                .childCount = 1,
+        };
+
+static const struct ChTreeNode node_zui =
+        {
+                .letter = CHAR_i,
+                .chinese = pinyin_zui,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_zun =
+        {
+                .letter = CHAR_n,
+                .chinese = pinyin_zun,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode node_zuo =
+        {
+                .letter = CHAR_o,
+                .chinese = pinyin_zuo,
+                .child = NULL,
+                .childCount = 0,
+        };
+
+static const struct ChTreeNode *const child_zu[] =
+        {
+                &node_zua, &node_zui, &node_zun, &node_zuo,
+        };
+
+static const struct ChTreeNode node_zu =
+        {
+                .letter = CHAR_u,
+                .chinese = pinyin_zu,
+                .child = child_zu,
+                .childCount = 4,
+        };
+
+static const struct ChTreeNode *const child_z[] =
+        {
+                &node_za, &node_ze, &node_zh, &node_zi, &node_zo, &node_zu,
+        };
+
+static const struct ChTreeNode node_z =
+        {
+                .letter = CHAR_z,
+                .chinese = NULL,
+                .child = child_z,
+                .childCount = 6,
+        };
+
+static const struct ChTreeNode *const child_root[] =
+        {
+                &node_a, &node_b, &node_c, &node_d, &node_e, &node_f, &node_g, &node_h, &node_j, &node_k, &node_l, &node_m, &node_n, &node_o, &node_p, &node_q, &node_r, &node_s, &node_t, &node_w, &node_x, &node_y, &node_z,
+        };
+
+const struct ChTreeNode gNode_root =
+        {
+                .letter = 0,
+                .chinese = NULL,
+                .child = child_root,
+                .childCount = 23,
+        };
 
 #endif //POKEEMERALD_CH_CH_INPUT_H
