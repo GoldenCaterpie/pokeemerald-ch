@@ -545,7 +545,7 @@ static void CreateNamingScreenTask(void)
 
 static void Task_NamingScreen(u8 taskId)
 {
-    switch (sNamingScreen->state)
+    switch (sNamingScreen->state) //刚刚创建此任务时此值为 STATE_FADE_IN
     {
     case STATE_FADE_IN:
         MainState_FadeIn();
@@ -620,6 +620,7 @@ static u8 CurrentPageToKeyboardId(void)
     return sPageToKeyboardId[sNamingScreen->currentPage];
 }
 
+//首次绘制bg 但需注意如果在此处修改的话切换页面时仍然会恢复
 static bool8 MainState_FadeIn(void)
 {
     DrawBgTilemap(3, gNamingScreenBackground_Tilemap);
@@ -933,6 +934,7 @@ static void TryStartButtonFlash(u8 button, bool8 keepFlashing, bool8 interruptCu
     StartButtonFlash(task, button, keepFlashing);
 }
 
+//用于控制选中按钮时边框的闪烁
 static void Task_UpdateButtonFlash(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
@@ -1865,6 +1867,8 @@ static void SaveInputText(void)
     }
 }
 
+//导入绘制输入背景的gfx以及按键等的sprite
+//关于map : [1byte tile][4bit 调色板号 + 4bit 该调色板下的第几个颜色]
 static void LoadGfx(void)
 {
     LZ77UnCompWram(gNamingScreenMenu_Gfx, sNamingScreen->tileBuffer);
@@ -1881,11 +1885,12 @@ static void CreateHelperTasks(void)
     CreateButtonFlashTask();
 }
 
+//导入调色板
 static void LoadPalettes(void)
 {
-    LoadPalette(gNamingScreenMenu_Pal, 0, 0xC0);
-    LoadPalette(sKeyboard_Pal, 0xA0, sizeof(sKeyboard_Pal));
-    LoadPalette(GetTextWindowPalette(2), 0xB0, 0x20);
+    LoadPalette(gNamingScreenMenu_Pal, 0, 0xC0); //导入背景的色盘
+    LoadPalette(sKeyboard_Pal, 0xA0, sizeof(sKeyboard_Pal)); //导入键盘(边框不属于)的色盘
+    LoadPalette(GetTextWindowPalette(2), 0xB0, 0x20); //导入上方提示框的色盘
 }
 
 static void DrawBgTilemap(u8 bg, const void *src)
