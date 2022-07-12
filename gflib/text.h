@@ -433,4 +433,6 @@ void DecompressGlyphFont9(u16 glyphId);
 u16 Font6Func(struct TextPrinter *textPrinter);
 u32 GetGlyphWidthFont6(u16 glyphId, bool32 isJapanese);
 
+#define IS_CH_BEGIN(currChar) ((currChar) >= 1 && (currChar) <= 0x1E)
+
 #endif // GUARD_TEXT_H

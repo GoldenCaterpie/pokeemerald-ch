@@ -1025,7 +1025,7 @@ u16 RenderText(struct TextPrinter *textPrinter)
             return 1;
         }
 		
-		if (currChar >= 1 && currChar <= 0x1E && currChar != 0x6 && currChar != 0x1B)
+		if (IS_CH_BEGIN(currChar))
             DecompressGlyphFontChinese(currChar, *textPrinter->printerTemplate.currentChar++, subStruct->glyphId);
 		else
         switch (subStruct->glyphId)
