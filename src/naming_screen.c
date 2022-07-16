@@ -299,7 +299,7 @@ static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] =
     },
     [WIN_TEXT_ENTRY] = {
         .bg = 1,
-        .tilemapLeft = 6,
+        .tilemapLeft = 8,
         .tilemapTop = 2,
         .width = 22,
         .height = 2,
@@ -616,7 +616,7 @@ static void NamingScreen_Init(void)
     sNamingScreen->template = sNamingScreenTemplates[sNamingScreen->templateNum];
     sNamingScreen->currentPage = sNamingScreen->template->initialPage;
 //    sNamingScreen->inputCharBaseXPos = (DISPLAY_WIDTH - sNamingScreen->template->maxChars * 8) / 2 + 6;
-    sNamingScreen->inputCharBaseXPos = (DISPLAY_WIDTH - sNamingScreen->template->maxChars * 8 * 2) / 2 + 16;
+    sNamingScreen->inputCharBaseXPos = (DISPLAY_WIDTH - sNamingScreen->template->maxChars * 8 * 2) / 2 + 32;
     if (sNamingScreen->templateNum == NAMING_SCREEN_WALDA)
         sNamingScreen->inputCharBaseXPos += 11;
 //    sNamingScreen->keyRepeatStartDelayCopy = gKeyRepeatStartDelay;
@@ -2733,7 +2733,7 @@ static void DrawTextEntry(void)
     u8 temp[3];
     register s8 i, chCount;
     u8 maxChars = sNamingScreen->template->maxChars;
-    u16 x = sNamingScreen->inputCharBaseXPos - 48;
+    u16 x = sNamingScreen->inputCharBaseXPos - 64;
 
     FillWindowPixelBuffer(sNamingScreen->windows[WIN_TEXT_ENTRY], PIXEL_FILL(0));
     for (i = chCount = 0; i < maxChars; i++, chCount++)
