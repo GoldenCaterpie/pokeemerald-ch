@@ -344,7 +344,7 @@ static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] =
     },
     [WIN_PINYIN] = {
         .bg = 1,
-        .tilemapLeft = 8,
+        .tilemapLeft = 13,
         .tilemapTop = 0,
         .width = 6,
         .height = 2,
