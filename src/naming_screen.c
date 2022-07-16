@@ -200,12 +200,13 @@ struct NamingScreenData
     u8 gTextMode[16];
     u8 textBuffer[16];
     u8 chBuffer[8];
-    u8 tileBuffer[0x2000];
+    u8 tileBuffer1[128 * 16];
+    u8 tileBuffer2[128 * 24];
     u8 tilemapBuffer1[0x800];
     u8 tilemapBuffer2[0x800];
     u8 tilemapBuffer3[0x800];
     u8 rectBuffer[32 * 16];
-    u8 rectBuffer2[64 * 16];
+//    u8 rectBuffer2[64 * 16];
     u8 rectCursorBuffer[32 * 16];
     u8 rectCursorBuffer2[64 * 16];
 };
@@ -287,8 +288,8 @@ static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] =
         .paletteNum = 10,
         .baseBlock = 0x030
     },
-    [WIN_KB_PAGE_2] = { //主页面
-        .bg = 2,
+    [WIN_KB_PAGE_2] = { //键盘按键
+        .bg = 1,
         .tilemapLeft = 3,
         .tilemapTop = 9,
         .width = 22,
@@ -297,7 +298,7 @@ static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] =
         .baseBlock = 0x0C8
     },
     [WIN_TEXT_ENTRY] = {
-        .bg = 2,
+        .bg = 1,
         .tilemapLeft = 6,
         .tilemapTop = 2,
         .width = 22,
@@ -306,7 +307,7 @@ static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] =
         .baseBlock = 0x030
     },
     [WIN_TEXT_ENTRY_BOX] = {
-        .bg = 2,
+        .bg = 1,
         .tilemapLeft = 8,
         .tilemapTop = 4,
         .width = 17,
@@ -329,11 +330,11 @@ static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] =
         .tilemapTop = 17,
         .width = 30,
         .height = 3,
-        .paletteNum = 1,
+        .paletteNum = 2,
         .baseBlock = 0x074
     },
     [WIN_CH] = {
-        .bg = 2,
+        .bg = 1,
         .tilemapLeft = 2,
         .tilemapTop = 6,
         .width = 26,
@@ -342,7 +343,7 @@ static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] =
         .baseBlock = 392
     },
     [WIN_PINYIN] = {
-        .bg = 2,
+        .bg = 1,
         .tilemapLeft = 8,
         .tilemapTop = 0,
         .width = 6,
@@ -370,22 +371,22 @@ static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] =
 //    "…“”‘'   ");
 
 static const u8 gText_NamingScreenKeyboard_Upper0[] = _("QWERTYUIOP  ");
-static const u8 gText_NamingScreenKeyboard_Upper1[] = _("ASDFGHJKL   ");
-static const u8 gText_NamingScreenKeyboard_Upper2[] = _("ZXCVBNM     ");
+static const u8 gText_NamingScreenKeyboard_Upper1[] = _(" ASDFGHJKL  ");
+static const u8 gText_NamingScreenKeyboard_Upper2[] = _("  ZXCVBNM   ");
 static const u8 gText_NamingScreenKeyboard_Lower0[] = _("qwertyuiop  ");
-static const u8 gText_NamingScreenKeyboard_Lower1[] = _("asdfghjkl   ");
-static const u8 gText_NamingScreenKeyboard_Lower2[] = _("zxcvbnm     ");
-static const u8 gText_NamingScreenKeyboard_Symbol0[] = _("0123456789 ");
-static const u8 gText_NamingScreenKeyboard_Symbol1[] = _("!?♂♀/-{PKMN}    ");
-static const u8 gText_NamingScreenKeyboard_Symbol2[] = _("…“”‘'.,:    ");
+static const u8 gText_NamingScreenKeyboard_Lower1[] = _(" asdfghjkl  ");
+static const u8 gText_NamingScreenKeyboard_Lower2[] = _("  zxcvbnm   ");
+static const u8 gText_NamingScreenKeyboard_Symbol0[] = _(" 0123456789 ");
+static const u8 gText_NamingScreenKeyboard_Symbol1[] = _("  !?♂♀/-{PKMN}  ");
+static const u8 gText_NamingScreenKeyboard_Symbol2[] = _("  …“”‘'.,:  ");
 
 static const u8* const gText_NamingScreenKeyboard_Words[][3] =
 {
     [KEYBOARD_CH] =
     {
-        gText_NamingScreenKeyboard_Lower0,
-        gText_NamingScreenKeyboard_Lower1,
-        gText_NamingScreenKeyboard_Lower2
+        gText_NamingScreenKeyboard_Upper0,
+        gText_NamingScreenKeyboard_Upper1,
+        gText_NamingScreenKeyboard_Upper2
     },
     [KEYBOARD_LETTERS_LOWER] =
     {
@@ -419,14 +420,16 @@ static const u8* const gText_NamingScreenKeyboard_Words[][3] =
 //    0, 22, 44, 66, 88, 110          // KEYBOARD_SYMBOLS
 //};
 
-static const u32 gNamingScreenBg_Gfx[] = INCBIN_U32("graphics/naming_screen/new/background.4bpp.lz");
-static const u32 gNamingScreenBg_Tilemap[] = INCBIN_U32("graphics/naming_screen/new/background.bin.lz");
+static const u32 gNamingScreenBg_BackgroundGfx[] = INCBIN_U32("graphics/naming_screen/new/background.4bpp.lz");
+static const u32 gNamingScreenBg_KeyboardGfx[] = INCBIN_U32("graphics/naming_screen/new/keyboard.4bpp.lz");
+static const u32 gNamingScreenBg_BackgroundTilemap[] = INCBIN_U32("graphics/naming_screen/new/background.bin.lz");
+static const u32 gNamingScreenBg_KeyboardTilemap[] = INCBIN_U32("graphics/naming_screen/new/keyboard.bin.lz");
 static const u16 gNamingScreenBg_Pal[] = INCBIN_U16("graphics/naming_screen/new/background.gbapal",
+                                                    "graphics/naming_screen/new/keyboard.gbapal",
                                                     "graphics/naming_screen/new/banner.gbapal");
-
 //实际大小23*17
 static const u32 gNamingScreenBg_Rect[] = INCBIN_U32("graphics/naming_screen/new/rect.4bpp.lz");
-static const u32 gNamingScreenBg_Rect2[] = INCBIN_U32("graphics/naming_screen/new/rect2.4bpp.lz");
+//static const u32 gNamingScreenBg_Rect2[] = INCBIN_U32("graphics/naming_screen/new/rect2.4bpp.lz");
 static const u32 gNamingScreenBg_RectCursor[] = INCBIN_U32("graphics/naming_screen/new/rect_cursor.4bpp.lz");
 static const u32 gNamingScreenBg_Rect2Cursor[] = INCBIN_U32("graphics/naming_screen/new/rect2_cursor.4bpp.lz");
 
@@ -506,7 +509,7 @@ static u8 GetTextEntryPosition(void);
 static u8 GetUnderscorePos(void);
 static void DeleteTextCharacter(void);
 static bool8 AddTextCharacter(void);
-static void BufferCharacter(u8);
+//static void BufferCharacter(u8);
 static void SaveInputText(void);
 static void LoadGfx(void);
 static void CreateHelperTasks(void);
@@ -603,8 +606,6 @@ static void CB2_LoadNamingScreen(void)
 
 static void NamingScreen_Init(void)
 {
-    u8 *chTable = gDecompressionBuffer;
-
     sNamingScreen->state = STATE_FADE_IN;
     sNamingScreen->bg1vOffset = 0;
     sNamingScreen->bg2vOffset = 0;
@@ -627,7 +628,6 @@ static void NamingScreen_Init(void)
     sNamingScreen->chBufferCount = 0;
 //    sNamingScreen->curChChars[0] = EOS;
     sNamingScreen->keyRole = KEY_ROLE_CHAR;
-    chTable[0] = EOS;
 }
 
 static void SetSpritesVisible(void)
@@ -799,7 +799,8 @@ static u8 CurrentPageToKeyboardId(void)
 
 static bool8 MainState_FadeIn(void)
 {
-    DrawBgTilemap(3, gNamingScreenBg_Tilemap);
+    DrawBgTilemap(3, gNamingScreenBg_BackgroundTilemap);
+    DrawBgTilemap(2, gNamingScreenBg_KeyboardTilemap);
     sNamingScreen->currentPage = KBPAGE_LETTERS_CH;
     //    DrawBgTilemap(2, gNamingScreenKeyboardLower_Tilemap);
     //    DrawBgTilemap(1, gNamingScreenKeyboardUpper_Tilemap);
@@ -1817,13 +1818,13 @@ static bool8 HandleKeyboardEvent(void)
     else if (INPUT_SELECT == event)
         return SwapKeyboardPage();
     else if (INPUT_R_BUTTON == event && ischinesepage
-        && sNamingScreen->chBuffer[0] != EOS) //翻到下一页
+        && sNamingScreen->chBufferCount > 0) //翻到下一页
     {
         TurnChinesePage(TRUE);
         return FALSE;
     }
     else if (INPUT_L_BUTTON == event && ischinesepage
-        && sNamingScreen->chBuffer[0] != EOS) //翻到上一页
+        && sNamingScreen->chBufferCount > 0) //翻到上一页
     {
         TurnChinesePage(FALSE);
         return FALSE;
@@ -2536,7 +2537,7 @@ static void ClearChineseTextEntry(void)
 
 static bool8 AddChCharacter(u16 ch)
 {
-    if (AddChCharacterBuffer(ch))
+    if (AddChCharacterBuffer(ch - CHAR_A + CHAR_a))
     {
         ReDrawChineseTextEntry();
         return TRUE;
@@ -2639,11 +2640,11 @@ static bool8 AddTextCharacter(void)
     return ismaxch;
 }
 
-static void BufferCharacter(u8 ch)
-{
-    u8 index = GetTextEntryPosition();
-    sNamingScreen->textBuffer[index] = ch;
-}
+//static void BufferCharacter(u8 ch)
+//{
+//    u8 index = GetTextEntryPosition();
+//    sNamingScreen->textBuffer[index] = ch;
+//}
 
 static void SaveInputText(void)
 {
@@ -2663,15 +2664,17 @@ static void SaveInputText(void)
 //关于map : [1byte tile][4bit 调色板号 + 4bit 该调色板下的第几个颜色]
 static void LoadGfx(void)
 {
-    LZ77UnCompWram(gNamingScreenBg_Gfx, sNamingScreen->tileBuffer);
+    LZ77UnCompWram(gNamingScreenBg_BackgroundGfx, sNamingScreen->tileBuffer1);
+    LZ77UnCompWram(gNamingScreenBg_KeyboardGfx, sNamingScreen->tileBuffer2);
     LZ77UnCompWram(gNamingScreenBg_Rect, sNamingScreen->rectBuffer);
-    LZ77UnCompWram(gNamingScreenBg_Rect2, sNamingScreen->rectBuffer2);
+//    LZ77UnCompWram(gNamingScreenBg_Rect2, sNamingScreen->rectBuffer2);
     LZ77UnCompWram(gNamingScreenBg_RectCursor, sNamingScreen->rectCursorBuffer);
     LZ77UnCompWram(gNamingScreenBg_Rect2Cursor, sNamingScreen->rectCursorBuffer2);
 //    LZ77UnCompWram(gNamingScreenMenu_Gfx, sNamingScreen->tileBuffer);
 //    LoadBgTiles(1, sNamingScreen->tileBuffer, sizeof(sNamingScreen->tileBuffer), 0);
 //    LoadBgTiles(2, sNamingScreen->tileBuffer, sizeof(sNamingScreen->tileBuffer), 0);
-    LoadBgTiles(3, sNamingScreen->tileBuffer, sizeof(sNamingScreen->tileBuffer), 0);
+    LoadBgTiles(3, sNamingScreen->tileBuffer1, sizeof(sNamingScreen->tileBuffer1), 0);
+    LoadBgTiles(2, sNamingScreen->tileBuffer2, sizeof(sNamingScreen->tileBuffer2), 0);
     LoadSpriteSheets(sSpriteSheets);
     LoadSpritePalettes(sSpritePalettes);
 }
@@ -2685,7 +2688,7 @@ static void CreateHelperTasks(void)
 //导入调色板
 static void LoadPalettes(void)
 {
-    LoadPalette(gNamingScreenBg_Pal, 0, 0x40); //一个色板大小是0x20
+    LoadPalette(gNamingScreenBg_Pal, 0, 0x60); //一个色板大小是0x20
 //    LoadPalette(gNamingScreenMenu_Pal, 0, 0xC0); //导入背景的色盘
     LoadPalette(sKeyboard_Pal, 0xA0, sizeof(sKeyboard_Pal)); //导入键盘(边框不属于)的色盘
 //    LoadPalette(GetTextWindowPalette(2), 0xB0, 0x20); //导入上方提示框的色盘
@@ -2788,6 +2791,8 @@ static s8 GetModifiedPad(u8 ch)
 {
     switch (ch)
     {
+        case CHAR_SPACE:
+            return 3;
         case CHAR_i:
         case CHAR_EXCL_MARK:
             return 2;
