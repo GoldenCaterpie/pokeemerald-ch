@@ -424,9 +424,7 @@ static const u32 gNamingScreenBg_BackgroundGfx[] = INCBIN_U32("graphics/naming_s
 static const u32 gNamingScreenBg_KeyboardGfx[] = INCBIN_U32("graphics/naming_screen/new/keyboard.4bpp.lz");
 static const u32 gNamingScreenBg_BackgroundTilemap[] = INCBIN_U32("graphics/naming_screen/new/background.bin.lz");
 static const u32 gNamingScreenBg_KeyboardTilemap[] = INCBIN_U32("graphics/naming_screen/new/keyboard.bin.lz");
-static const u16 gNamingScreenBg_Pal[] = INCBIN_U16("graphics/naming_screen/new/background.gbapal",
-                                                    "graphics/naming_screen/new/keyboard.gbapal",
-                                                    "graphics/naming_screen/new/banner.gbapal");
+static const u16 gNamingScreenBg_Pal[] = INCBIN_U16("graphics/naming_screen/new/background.gbapal");
 //实际大小23*17
 static const u32 gNamingScreenBg_Rect[] = INCBIN_U32("graphics/naming_screen/new/rect.4bpp.lz");
 //static const u32 gNamingScreenBg_Rect2[] = INCBIN_U32("graphics/naming_screen/new/rect2.4bpp.lz");
